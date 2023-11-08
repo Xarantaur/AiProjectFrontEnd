@@ -37,7 +37,7 @@ function gandalfScene() {
     dumbledoreButton.style.backgroundColor = 'white';
     sarumanButton.style.backgroundColor = 'white';
     responseField.innerHTML = "(Gandalf will reply to you here)";
-    responseField.style.color = 'black';
+    responseField.style.color = 'white';
     title.style.color = 'black';
     chosenWizard = "gandalf";
 }
@@ -53,11 +53,11 @@ function textTypingEffect(element, text, i = 0) {
         return;
     }
 
-    setTimeout(() => textTypingEffect(element, text, i + 1), 50)
+    setTimeout(() => textTypingEffect(element, text, i + 1), 30)
 }
 
 async function getGandalfResponse(message, chosenWizard) {
-    fetch(`http://localhost:8080/chat?message=${encodeURIComponent(message)}?chosenwizard=${encodeURIComponent(chosenWizard)}`)
+    fetch(`http://localhost:8080/chat?message=${encodeURIComponent(message)}&chosenwizard=${encodeURIComponent(chosenWizard)}`)
         .then(response => response.json())
         .then(data => {
             // Process the response data
@@ -77,7 +77,7 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
     const userInput = inputField.value;
     console.log('User input: ', userInput);
-    getGandalfResponse(userInput);
+    getGandalfResponse(userInput, chosenWizard);
 });
 
 sarumanButton.addEventListener('click', sarumanScene);

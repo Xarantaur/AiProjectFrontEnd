@@ -11,7 +11,9 @@ body{
 }
 
 .responseField{
-    width: 350px;
+    width: 400px;
+    height: 500px;
+    background-color: rgba(0, 0 ,0, 40%);
 }
 
 .button-group button{
