@@ -36,22 +36,40 @@
 </head>
 <body>
 
-    <div>
-      <h1>Welcome To chat with a wizard</h1>
+    <div class="background">
+      <h1 id="title">Welcome To chat with a wizard</h1>
+        <br>
+        <div class="button-group">
+            <button class="gandalfButton" id="gandalfButton">Gandalf</button>
+            <button class="sarumanButton" id="sarumanButton">Saruman</button>
+            <button class="dumbledoreButton" id="dumbledoreButton">Dumbledore</button>
+            <button class="voldemortButton" id="voldemortButton">Voldemort</button>
+        </div>
+        <br>
         <form id="myForm">
-            <input type="text" id="inputField" placeholder="Enter your message">
+            <input class="inputField" type="text" id="inputField" placeholder="Enter your message">
             <button type="submit" id="submitButton">Send</button>
         </form>
         <br>
+
         <div class="gandalfContainer">
         </div>
         <br>
       <div id="responseField">
+
+      <div class="responseField" id="responseField">
+
         (Gandalf will reply to you here)
       </div>
 
     </div>
+
 <script src="../js/frontpage.js"></script>
+
+
+
+<script src="../js/frontpage.js" defer></script>
+
 </body>
 
 </html>
