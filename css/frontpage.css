@@ -14,13 +14,13 @@ body{
 .wizardContainer {
     background-image: url("../Pictures/Gandalf.webp");
     background-size: cover;
-    width: 300px;
-    height: 300px;
+    width: 406px;
+    height: 400px;
 
 }
 
 #responseField{
-    width: 400px;
+    width: 406px;
     height: 500px;
     background-color: rgba(0, 0 ,0, 40%);
 }
