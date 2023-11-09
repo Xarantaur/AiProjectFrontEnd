@@ -1,4 +1,5 @@
 body{
+
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -10,7 +11,7 @@ body{
     height: 30px;
 }
 
-.gandalfContainer {
+.wizardContainer {
     background-image: url("../Pictures/Gandalf.webp");
     background-size: cover;
     width: 300px;

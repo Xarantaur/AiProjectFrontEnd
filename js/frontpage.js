@@ -7,6 +7,7 @@ const wizards = [
             'url(../Pictures/Gandalf3.png)',
             'url(../Pictures/Gandalf4.png)'
         ],
+        role: "gandalf"
     },
     {
         name: "Saruman",
@@ -16,18 +17,30 @@ const wizards = [
             'url(../Pictures/saruman3.png)',
             'url(../Pictures/saruman4.png)'
         ],
+        role: "saruman"
     },
-    /* {
+    {
          name: "Dumbledore",
          backgroundImages: [
-             'url("../Pictures/Dumbledore1.jpg")',
-             'url("../Pictures/Dumbledore2.jpg")',
-             'url("../Pictures/Dumbledore3.jpg")',
-             ''
+             'url(../Pictures/dumbledore.png)',
+             'url(../Pictures/dumbledore2.png)',
+             'url(../Pictures/dumbledore3.png)',
+             'url(../Pictures/dumbledore4.png)'
+             ],
+        role: "dumbledore"
      },
- },*/
-];
+    {
+        name: "Voldemort",
+        backgroundImages: [
+            'url(../Pictures/voldemort.webp)',
+            'url(../Pictures/voldemort2.png)',
+            'url(../Pictures/voldemort3.png)',
+            'url(../Pictures/voldemort4.png)'
+        ],
+        role: "voldemort"
+    }
 
+];
 const form = document.getElementById('myForm');
 const inputField = document.getElementById('inputField');
 let responseField = document.getElementById('responseField');
@@ -37,28 +50,24 @@ const gandalfButton = document.getElementById('gandalfButton');
 const sarumanButton = document.getElementById('sarumanButton');
 const dumbledoreButton = document.getElementById('dumbledoreButton');
 const voldemortButton = document.getElementById('voldemortButton');
-let chosenWizardIndex = 0
-let currentImageIndex = 0;
-let chosenWizard = wizards[0]
+let wizardContainer = document.querySelector('.wizardContainer');
+let currentImageIndex = 0
+let wizardArray = wizards[0]
+const body = document.body;
 
 function updateUI() {
-    document.body.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
-    responseField.innerHTML = chosenWizard.message;
+    document.body.style.backgroundImage =wizardArray.backgroundImages[currentImageIndex]
+    responseField.innerHTML = wizardArray.message;
 }
-
-function changeWizard(index) {
-    chosenWizardIndex = index;
-    chosenWizard = wizards[chosenWizardIndex];
-    updateUI();
-    responseField.innerHTML = `(${chosenWizard.name} will reply to you here)`;
-    responseField.style.color = 'white';
-    title.style.color = 'white';
+function changeWizard(index){
+    wizardArray = wizards[index]
+    chosenWizard = wizardArray.role;
+    updateUI()
 }
-updateUI()
-
 
 function sarumanScene() {
     changeWizard(1)
+    wizardContainer.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex][1];
     document.body.style.backgroundImage = "url('../Pictures/isengard.jpg')";
     responseField.innerHTML = "(Saruman will reply to you here)";
     responseField.style.color = 'white';
@@ -67,7 +76,9 @@ function sarumanScene() {
 }
 
 function dumbledoreScene() {
-    document.body.style.backgroundImage = "url('https://images.ctfassets.net/usf1vwtuqyxm/10gV2CRra9nixY63MQGgvA/6748ddb5f4269e2fc5ce59cccd6e05de/HP-F6-half-blood-prince-dumbledore-office-memory-cabinet-web-landscape?fm=jpg&q=70&w=2560')";
+    changeWizard(2)
+    wizardContainer.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex][2];
+    document.body.style.backgroundImage = "url('../Pictures/hogwarts.jpg')";
     responseField.innerHTML = "(Dumbledore will reply to you here)";
     responseField.style.color = 'white';
     title.style.color = 'white';
@@ -75,8 +86,8 @@ function dumbledoreScene() {
 }
 
 function gandalfScene() {
-    changeWizard(0);
-
+    changeWizard(0)
+    wizardContainer.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex][0];
     document.body.style.backgroundImage = "url('../Pictures/theShire.jpg')";
     responseField.innerHTML = "(Gandalf will reply to you here)";
     responseField.style.color = 'white';
@@ -84,7 +95,9 @@ function gandalfScene() {
 }
 
 function voldemortScene() {
-    document.body.style.backgroundImage = "url('https://static1.srcdn.com/wordpress/wp-content/uploads/2020/06/voldemort-feature.jpg')";
+    changeWizard(3)
+    wizardContainer.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex][3]
+    document.body.style.backgroundImage = "url('../Pictures/chamber.jpeg')";
     responseField.innerHTML = "(Voldemort will reply to you here)";
     responseField.style.color = 'white';
     title.style.color = 'white';
@@ -169,25 +182,13 @@ voldemortButton.addEventListener('mouseout', () => {
 });
 <!--  wizard anime -->
 
-updateUI()
-/*const gandalfImagePath = [
-    'url(../Pictures/Gandalf.webp)',
-    'url(../Pictures/Gandalf2.png)',
-    'url(../Pictures/Gandalf3.png)',
-    'url(../Pictures/Gandalf4.png)'
-];*/
-const body = document.body;
-
 function changeBackground() {
-    currentImageIndex = (currentImageIndex + 1) % chosenWizard.backgroundImages.length;
-    const gandalfContainer = document.querySelector('.gandalfContainer');
-    gandalfContainer.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
+    currentImageIndex = (currentImageIndex + 1) % wizardArray.backgroundImages.length;
+    const wizardContainer = document.querySelector('.wizardContainer');
+    wizardContainer.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex];
     console.log("Background changed");
 }
 
-function setChosenWizard(wizard) {
-    chosenWizard = wizard
-}
 const observer = new MutationObserver(changeBackground)
 
 const observerConfig = {childList: true}
@@ -196,7 +197,7 @@ observer.observe(responseField, observerConfig)
 console.log("MutationObserver is active.");
 
 //responseField.addEventListener("DOMSubtreeModified", changeBackground)
-body.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
+body.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex];
 console.log("Initial background set.");
 
 
