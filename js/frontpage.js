@@ -54,6 +54,7 @@ let wizardContainer = document.querySelector('.wizardContainer');
 let currentImageIndex = 0
 let wizardArray = wizards[0]
 const body = document.body;
+let chosenWizard = "gandalf";
 
 function updateUI() {
     document.body.style.backgroundImage =wizardArray.backgroundImages[currentImageIndex]
@@ -92,6 +93,7 @@ function gandalfScene() {
     responseField.innerHTML = "(Gandalf will reply to you here)";
     responseField.style.color = 'white';
     title.style.color = 'white';
+    chosenWizard = "gandalf";
 }
 
 function voldemortScene() {
