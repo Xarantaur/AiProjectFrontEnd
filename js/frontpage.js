@@ -197,7 +197,7 @@ observer.observe(responseField, observerConfig)
 console.log("MutationObserver is active.");
 
 //responseField.addEventListener("DOMSubtreeModified", changeBackground)
-body.style.backgroundImage = wizardArray.backgroundImages[currentImageIndex];
+body.style.backgroundImage = 'url(../Pictures/theShire.jpg)'
 console.log("Initial background set.");
 
 
