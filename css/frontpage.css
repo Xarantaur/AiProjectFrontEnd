@@ -1,5 +1,4 @@
 body{
-    background-image: url("https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large_lg/image/14/145326/14464568-gandalf---10_20160822065043115.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -7,7 +6,7 @@ body{
 .inputField
 {
 
-    width: 100vw;
+    width: 400px;
     height: 30px;
 }
 
@@ -17,9 +16,6 @@ body{
     width: 300px;
     height: 300px;
 
-
-    width: 400px;
-    height: 30px;
 }
 
 .responseField{

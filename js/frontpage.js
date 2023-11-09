@@ -1,3 +1,33 @@
+const wizards = [
+    {
+        name: "Gandalf",
+        backgroundImages: [
+            'url(../Pictures/Gandalf.webp)',
+            'url(../Pictures/Gandalf2.png)',
+            'url(../Pictures/Gandalf3.png)',
+            'url(../Pictures/Gandalf4.png)'
+        ],
+    },
+    {
+        name: "Saruman",
+        backgroundImages: [
+            'url(../Pictures/saruman.png)',
+            'url(../Pictures/saruman2.png)',
+            'url(../Pictures/saruman3.png)',
+            'url(../Pictures/saruman4.png)'
+        ],
+    },
+    /* {
+         name: "Dumbledore",
+         backgroundImages: [
+             'url("../Pictures/Dumbledore1.jpg")',
+             'url("../Pictures/Dumbledore2.jpg")',
+             'url("../Pictures/Dumbledore3.jpg")',
+             ''
+     },
+ },*/
+];
+
 const form = document.getElementById('myForm');
 const inputField = document.getElementById('inputField');
 let responseField = document.getElementById('responseField');
@@ -7,11 +37,29 @@ const gandalfButton = document.getElementById('gandalfButton');
 const sarumanButton = document.getElementById('sarumanButton');
 const dumbledoreButton = document.getElementById('dumbledoreButton');
 const voldemortButton = document.getElementById('voldemortButton');
-let chosenWizard = "gandalf";
+let chosenWizardIndex = 0
+let currentImageIndex = 0;
+let chosenWizard = wizards[0]
+
+function updateUI() {
+    document.body.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
+    responseField.innerHTML = chosenWizard.message;
+}
+
+function changeWizard(index) {
+    chosenWizardIndex = index;
+    chosenWizard = wizards[chosenWizardIndex];
+    updateUI();
+    responseField.innerHTML = `(${chosenWizard.name} will reply to you here)`;
+    responseField.style.color = 'white';
+    title.style.color = 'white';
+}
+updateUI()
 
 
 function sarumanScene() {
-    document.body.style.backgroundImage = "url('https://qph.cf2.quoracdn.net/main-qimg-c9f526cd88564f3a6f0cfdb5ec845af2')";
+    changeWizard(1)
+    document.body.style.backgroundImage = "url('../Pictures/isengard.jpg')";
     responseField.innerHTML = "(Saruman will reply to you here)";
     responseField.style.color = 'white';
     title.style.color = 'white';
@@ -27,11 +75,12 @@ function dumbledoreScene() {
 }
 
 function gandalfScene() {
-    document.body.style.backgroundImage = "url('https://berlingske.bmcdn.dk/media/cache/resolve/image_x_large_lg/image/14/145326/14464568-gandalf---10_20160822065043115.jpeg')";
+    changeWizard(0);
+
+    document.body.style.backgroundImage = "url('../Pictures/theShire.jpg')";
     responseField.innerHTML = "(Gandalf will reply to you here)";
     responseField.style.color = 'white';
-    title.style.color = 'black';
-    chosenWizard = "gandalf";
+    title.style.color = 'white';
 }
 
 function voldemortScene() {
@@ -80,8 +129,10 @@ form.addEventListener('submit', function (event) {
     getGandalfResponse(userInput, chosenWizard);
 });
 
-sarumanButton.addEventListener('click', sarumanScene);
-gandalfButton.addEventListener('click', gandalfScene)
+sarumanButton.addEventListener('click',
+    sarumanScene)
+gandalfButton.addEventListener('click',
+    gandalfScene)
 dumbledoreButton.addEventListener('click', dumbledoreScene)
 voldemortButton.addEventListener('click', voldemortScene)
 
@@ -116,7 +167,37 @@ voldemortButton.addEventListener('mouseover', () => {
 voldemortButton.addEventListener('mouseout', () => {
     voldemortButton.style.backgroundColor = 'white';
 });
+<!--  wizard anime -->
 
+updateUI()
+/*const gandalfImagePath = [
+    'url(../Pictures/Gandalf.webp)',
+    'url(../Pictures/Gandalf2.png)',
+    'url(../Pictures/Gandalf3.png)',
+    'url(../Pictures/Gandalf4.png)'
+];*/
+const body = document.body;
+
+function changeBackground() {
+    currentImageIndex = (currentImageIndex + 1) % chosenWizard.backgroundImages.length;
+    const gandalfContainer = document.querySelector('.gandalfContainer');
+    gandalfContainer.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
+    console.log("Background changed");
+}
+
+function setChosenWizard(wizard) {
+    chosenWizard = wizard
+}
+const observer = new MutationObserver(changeBackground)
+
+const observerConfig = {childList: true}
+
+observer.observe(responseField, observerConfig)
+console.log("MutationObserver is active.");
+
+//responseField.addEventListener("DOMSubtreeModified", changeBackground)
+body.style.backgroundImage = chosenWizard.backgroundImages[currentImageIndex];
+console.log("Initial background set.");
 
 
 

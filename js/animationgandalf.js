@@ -11,12 +11,15 @@ const responseField = document.getElementById("responseField")
 function changeBackground(){
     currentImageIndex = (currentImageIndex + 1) % imagePath.length;
     body.style.backgroundImage  = imagePath[currentImageIndex]
+
 }
 const observer = new MutationObserver(changeBackground)
 
 const observerConfig = {childList: true}
 
 observer.observe(responseField, observerConfig)
+console.log("MutationObserver is active.");
 
-//responseField.addEventListener("DOMSubtreeModified", changeBackground) Gammel funktion*
+//responseField.addEventListener("DOMSubtreeModified", changeBackground)
 body.style.backgroundImage = imagePath[currentImageIndex]
+console.log("Initial background set.");
