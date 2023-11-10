@@ -11,3 +11,5 @@ backend part of the project by going to Run->Edit Configurations and inserting t
 as GPT_API_KEY = valid key
 
 Notice: Do not use quotation marks around the key value as this would be included in the String. 
+
+Notice: There is a limit to how many messages you can send pr minute, the limit is set to 5 messages.
